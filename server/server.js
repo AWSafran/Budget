@@ -1,6 +1,11 @@
-const http = require('http');
+const express = require('express');
+const routes = require('./routes/category');
 
-http.createServer(function(req, res) {
-    res.writeHead(200, { 'Content-Type': 'text/html' });
-    res.end('Hello World!');
-}).listen(8080);
+const app = express();
+
+app.use(express.json());
+app.use('/', routes);
+
+const listener = app.listen(process.env.port || 8080, () => {
+    console.log(`Server is listening on port ${listener.address().port}`)
+});
