@@ -47,7 +47,7 @@ async function deactivateCategory(categoryId) {
     if (existing === null) {
         return '404 Category not found';
     } else if (!existing.isActive) {
-        return '401 Category already inactive';
+        return 'Category already inactive';
     }
     const deactivateQuery = 'UPDATE Category SET isActive = false WHERE id = ?;';
     const deactivateParams = [categoryId];

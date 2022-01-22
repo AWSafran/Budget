@@ -11,7 +11,6 @@ async function postCategory (req, res, next) {
 }
 
 async function putCategory (req, res, next) {
-    console.log(req);
     const response = await categoryService.editCategory(req.params.id, req.body.name, req.body.isActive);
     res.json(response);
 }
