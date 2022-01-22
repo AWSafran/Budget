@@ -1,19 +1,10 @@
-const mysql = require('mysql');
+const mysql = require('mysql2/promise');
+const config = require('../config');
 
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: process.env.mysqlPassword,
-    database: 'budget'
-});
+async function query(sql, params = null) {
+    const connection = await mysql.createConnection(config.db)
+    const [results] = await connection.execute(sql, params);
+    return results ? results : [];
+}
 
-connection.connect((err) => {
-    if (err) throw err;
-    console.log('connected');
-    connection.query('select * from Category;', function (err, result) {
-        if (err) throw err;
-        console.log(result);
-      });
-})
-
-module.exports = { connection };
+module.exports = { query };
