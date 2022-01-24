@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './pages/dashboard/dashboard/dashboard.component';
 import { ExpensesComponent } from './pages/expenses/expenses/expenses.component';
 import { ManageComponent } from './pages/manage/manage/manage.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ManageComponent } from './pages/manage/manage/manage.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
