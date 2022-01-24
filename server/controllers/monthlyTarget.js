@@ -1,3 +1,5 @@
+const express = require('express');
+const router = express.Router();
 const monthlyTargetService = require('../services/monthlyTarget');
 
 async function getMonthlyTargets(req, res, next) {
@@ -15,8 +17,8 @@ async function deleteMonthlyTarget(req, res, next) {
     res.json(result);
 }
 
-module.exports = {
-    getMonthlyTargets,
-    addOrUpdateMonthlyTargets,
-    deleteMonthlyTarget
-}
+router.get('/', getMonthlyTargets);
+router.post('/', addOrUpdateMonthlyTargets);
+router.delete('/', deleteMonthlyTarget);
+
+module.exports = router;

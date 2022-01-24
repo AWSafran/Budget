@@ -1,3 +1,5 @@
+const express = require('express');
+const router = express.Router();
 const merchantService = require('../services/merchant');
 
 async function getMerchants(req, res, next) {
@@ -15,8 +17,8 @@ async function putMerchant(req, res, next) {
     res.json(response);
 }
 
-module.exports = {
-    getMerchants,
-    postMerchant,
-    putMerchant
-}
+router.get('/', getMerchants);
+router.post('/', postMerchant);
+router.put('/:id', putMerchant);
+
+module.exports = router;

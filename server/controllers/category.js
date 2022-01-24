@@ -1,3 +1,5 @@
+const express = require('express');
+const router = express.Router();
 const categoryService = require('../services/category');
 
 async function getCategories (req, res, next) {
@@ -20,9 +22,9 @@ async function deactivateCategory(req, res, next) {
     res.json(response);
 }
 
-module.exports = {
-    getCategories,
-    postCategory,
-    putCategory,
-    deactivateCategory
-};
+router.get('/', getCategories);
+router.post('/', postCategory);
+router.put('/:id', putCategory);
+router.delete('/:id', deactivateCategory);
+
+module.exports = router;

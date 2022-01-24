@@ -30,8 +30,6 @@ async function deleteMonthlyTarget(categoryId, month, year) {
     if (existing === null) {
         return '404 Monthly Target not found';
     }
-    console.log(existing)
-    console.log([categoryId, month, year]);
 
     const deleteQuery = 'DELETE FROM MonthlyTarget WHERE categoryId = ? AND month = ? AND year = ?';
     const deleteParams = [categoryId, month, year];

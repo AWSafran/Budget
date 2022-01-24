@@ -1,3 +1,5 @@
+const express = require('express');
+const router = express.Router();
 const expenseService = require('../services/expense');
 
 async function getExpenses(req, res, next) {
@@ -21,9 +23,9 @@ async function deleteExpense(req, res, next) {
     res.json(response);
 }
 
-module.exports = {
-    getExpenses,
-    postExpenses,
-    putExpense,
-    deleteExpense
-};
+router.get('/', getExpenses);
+router.post('/', postExpenses);
+router.put('/:id', putExpense);
+router.delete('/:id', deleteExpense);
+
+module.exports = router;

@@ -1,9 +1,9 @@
 require('dotenv').config();
 const express = require('express');
-const categories = require('./routes/category');
-const merchants = require('./routes/merchant');
-const expenses = require('./routes/expense');
-const monthlyTargets = require('./routes/monthlyTarget');
+const categories = require('./controllers/category');
+const merchants = require('./controllers/merchant');
+const expenses = require('./controllers/expense');
+const monthlyTargets = require('./controllers/monthlyTarget');
 
 const app = express();
 
