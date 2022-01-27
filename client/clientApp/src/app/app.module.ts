@@ -21,6 +21,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MerchantsComponent } from './pages/manage/components/merchants/merchants.component';
 import { MerchantsService } from './services/merchants.service';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { MerchantsService } from './services/merchants.service';
     MatFormFieldModule,
     MatButtonModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatSelectModule
   ],
   providers: [
     CategoriesService,

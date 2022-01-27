@@ -17,9 +17,10 @@
 <form [formGroup]="form" *ngIf="form">
     <mat-form-field appearance="standard">
         <mat-label>Name</mat-label>
-        <input matInput placeholder="New Category" (keydown.enter)="addCategory()" [formControlName]="categoryNameFcName">
+        <input matInput placeholder="New Category"
+            [formControlName]="categoryNameFcName">
         <mat-error>Please provide a unique category name</mat-error>
     </mat-form-field>
-
-    <button mat-raised-button color="primary" (click)="addCategory()" [disabled]="form['invalid']">Add Category</button>
+    <button mat-raised-button color="primary" (click)="addCategory()"
+        [disabled]="form['invalid']">Add Category</button>
 </form>
