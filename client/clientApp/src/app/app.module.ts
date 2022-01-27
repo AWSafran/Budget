@@ -8,15 +8,23 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ExpensesComponent } from './pages/expenses/expenses.component';
 import { ManageComponent } from './pages/manage/manage.component';
 import { MatTabsModule } from '@angular/material/tabs';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { CategoriesComponent } from './pages/manage/components/categories/categories.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CategoriesService } from './services/categories.service';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     ExpensesComponent,
-    ManageComponent
+    ManageComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,
@@ -24,9 +32,17 @@ import { MatInputModule } from '@angular/material/input';
     BrowserAnimationsModule,
     MatTabsModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    HttpClientModule,
+    MatTableModule,
+    MatIconModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatButtonModule
   ],
-  providers: [],
+  providers: [
+    CategoriesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
