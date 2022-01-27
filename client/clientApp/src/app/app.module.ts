@@ -19,6 +19,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MerchantsComponent } from './pages/manage/components/merchants/merchants.component';
+import { MerchantsService } from './services/merchants.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { MatListModule } from '@angular/material/list';
     DashboardComponent,
     ExpensesComponent,
     ManageComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    MerchantsComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,8 @@ import { MatListModule } from '@angular/material/list';
     MatListModule
   ],
   providers: [
-    CategoriesService
+    CategoriesService,
+    MerchantsService
   ],
   bootstrap: [AppComponent]
 })
