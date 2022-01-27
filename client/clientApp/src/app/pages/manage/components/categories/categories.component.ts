@@ -13,11 +13,12 @@ import { EventEmitter } from '@angular/core';
 export class CategoriesComponent implements OnInit {
   // TODO: Add edit/delete function, table paging, filtering on isActive
   @Input() public categories: Category[];
-  public displayedColumns: string[] = ['name', 'isActive'];
-  public readonly categoryNameFcName: string = 'name';
-  public form: FormGroup;
 
   @Output() public onAddCategory: EventEmitter<string> = new EventEmitter<string>();
+
+  public form: FormGroup;
+  public displayedColumns: string[] = ['name', 'isActive'];
+  public readonly categoryNameFcName: string = 'name';
 
   constructor(
     private readonly formBuilder: FormBuilder
@@ -29,7 +30,7 @@ export class CategoriesComponent implements OnInit {
     });
   }
 
-  public addCategory() {
+  public addCategory(): void {
     const control = this.form.get(this.categoryNameFcName);
     if (!control) {
       return;

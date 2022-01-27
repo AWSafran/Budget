@@ -16,9 +16,8 @@ export class MerchantsComponent implements OnInit {
 
   @Output() public onAddMerchant: EventEmitter<{ name: string, categoryId: number }> = new EventEmitter<{ name: string, categoryId: number }>();
 
-  public displayedColumns: string[] = ['name', 'categoryName'];
   public form: FormGroup;
-
+  public displayedColumns: string[] = ['name', 'categoryName'];
 
   public readonly merchantFcName: string = 'merchant';
   public readonly categoryFcName: string = 'category';
