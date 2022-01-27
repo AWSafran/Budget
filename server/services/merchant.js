@@ -16,8 +16,8 @@ async function addMerchant(name, categoryId) {
 
     const addQuery = 'INSERT INTO Merchant(name, categoryId) VALUES(?,?);';
     const addParams = [name, categoryId];
-    const result = await db.query(addQuery, addParams);
-    return result;
+    await db.query(addQuery, addParams);
+    return await getMerchants();
 }
 
 async function editMerchant(merchantId, name, categoryId) {

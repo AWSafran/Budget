@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { take } from 'rxjs';
 import { Category } from 'src/app/model/category';
 import { CategoriesService } from 'src/app/services/categories.service';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-categories',
@@ -11,23 +12,18 @@ import { CategoriesService } from 'src/app/services/categories.service';
 })
 export class CategoriesComponent implements OnInit {
   // TODO: Add edit/delete function, table paging, filtering on isActive
-  public categories: Category[];
+  @Input() public categories: Category[];
   public displayedColumns: string[] = ['name', 'isActive'];
   public readonly categoryNameFcName: string = 'name';
   public form: FormGroup;
 
+  @Output() public onAddCategory: EventEmitter<string> = new EventEmitter<string>();
+
   constructor(
-    private readonly categoriesService: CategoriesService,
     private readonly formBuilder: FormBuilder
     ) { }
 
   public ngOnInit(): void {
-    this.categoriesService.getCategories().pipe(
-      take(1)
-    ).subscribe(res => {
-      this.categories = res;
-    })
-
     this.form = this.formBuilder.group({
       [this.categoryNameFcName]: ['', [Validators.required, this.duplicateNameFormValidator]]
     });
@@ -38,9 +34,8 @@ export class CategoriesComponent implements OnInit {
     if (!control) {
       return;
     }
-    this.categoriesService.addCategory(control.value).pipe(
-      take(1)
-    ).subscribe(categories => this.categories = [...categories]);
+
+    this.onAddCategory.emit(control.value);
   }
 
   public duplicateNameFormValidator = (control: AbstractControl) => {

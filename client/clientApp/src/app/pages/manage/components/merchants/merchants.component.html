@@ -11,3 +11,20 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+<form [formGroup]="form" *ngIf="form">
+    <mat-form-field appearance="standard">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="New Merchant"
+            [formControlName]="merchantFcName">
+        <mat-error>Please provide a merchant name</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="standard">
+        <mat-label>Category</mat-label>
+        <mat-select [formControlName]="categoryFcName" required>
+            <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</mat-option>
+        </mat-select>
+        <mat-error>Please select a category</mat-error> 
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="addMerchant()" [disabled]="form['invalid']">Add Merchant</button>
+</form>
