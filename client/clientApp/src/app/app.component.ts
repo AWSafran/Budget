@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NavLink } from './model/nav-link';
 
 @Component({
@@ -18,9 +19,22 @@ export class AppComponent {
     },
     {
       label: 'Manage',
-      link: 'manage'
+      link: '/manage'
     }
   ];
 
-  public activeLink: string = this.navLinks[0].link;
+  public windowHeight: number;
+
+  @HostListener('window:resize', ['$event'])
+    onResize() {
+      this.windowHeight = window.innerHeight;
+  }
+
+  constructor(private router: Router) {
+    this.windowHeight = window.innerHeight;
+  }
+
+  public isCurrentRoute(link: string): boolean {
+    return this.router.url === link
+  }
 }
