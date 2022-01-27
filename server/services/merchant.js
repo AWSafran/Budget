@@ -1,7 +1,7 @@
 const db = require('../database/database');
 
 async function getMerchants() {
-    const query = 'SELECT id, name, categoryId from Merchant;';
+    const query = 'SELECT m.id, m.name, m.categoryId, c.name as categoryName FROM Merchant m LEFT JOIN Category c ON c.id = m.categoryId;';
     const rows = await db.query(query);
     return rows;
 }
