@@ -15,8 +15,8 @@ async function addCategory(categoryName) {
     }
     const insertQuery = 'INSERT INTO Category(name, isActive) VALUES(?, true);';
     const insertParams = [categoryName];
-    const response = await db.query(insertQuery, insertParams);
-    return response;
+    await db.query(insertQuery, insertParams);
+    return await getAllCategories();
 }
 
 async function editCategory(categoryId, newName, isActive) {
@@ -36,8 +36,8 @@ async function editCategory(categoryId, newName, isActive) {
 
     const updateQuery = 'UPDATE Category SET name = ?, isActive = ? WHERE id = ?;';
     const updateParams = [newName, isActive, categoryId];
-    const result = await db.query(updateQuery, updateParams);
-    return result;
+    await db.query(updateQuery, updateParams);
+    return await getAllCategories();
 }
 
 async function deactivateCategory(categoryId) {
@@ -51,8 +51,8 @@ async function deactivateCategory(categoryId) {
     }
     const deactivateQuery = 'UPDATE Category SET isActive = false WHERE id = ?;';
     const deactivateParams = [categoryId];
-    const result = await db.query(deactivateQuery,deactivateParams);
-    return result;
+    await db.query(deactivateQuery,deactivateParams);
+    return await getAllCategories();
 }
 
 module.exports = {
