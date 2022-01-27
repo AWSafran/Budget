@@ -1,1 +1,13 @@
-<p>merchants works!</p>
+<table mat-table [dataSource]="merchants" *ngIf="merchants">
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let merchant">{{merchant.name}}</td>
+    </ng-container>
+    <ng-container matColumnDef="categoryName">
+        <th mat-header-cell *matHeaderCellDef>Category</th>
+        <td mat-cell *matCellDef="let merchant">{{merchant.categoryName}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
