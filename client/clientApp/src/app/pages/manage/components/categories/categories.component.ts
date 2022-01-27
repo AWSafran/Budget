@@ -10,15 +10,11 @@ import { CategoriesService } from 'src/app/services/categories.service';
   styleUrls: ['./categories.component.scss']
 })
 export class CategoriesComponent implements OnInit {
+  // TODO: Add edit/delete function, table paging, filtering on isActive
   public categories: Category[];
-  public newCategoryName: string = '';
   public displayedColumns: string[] = ['name', 'isActive'];
   public readonly categoryNameFcName: string = 'name';
   public form: FormGroup;
-
-  public get submitError(): string {
-    return this.newCategoryName.length === 0 ? 'Category name can not be empty' : 'Category name must be unique'
-  }
 
   constructor(
     private readonly categoriesService: CategoriesService,
@@ -38,7 +34,13 @@ export class CategoriesComponent implements OnInit {
   }
 
   public addCategory() {
-    this.categoriesService.addCategory(this.newCategoryName);
+    const control = this.form.get(this.categoryNameFcName);
+    if (!control) {
+      return;
+    }
+    this.categoriesService.addCategory(control.value).pipe(
+      take(1)
+    ).subscribe(categories => this.categories = [...categories]);
   }
 
   public duplicateNameFormValidator = (control: AbstractControl) => {
